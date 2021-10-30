@@ -16,13 +16,13 @@ public class FoodController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "FoodService")
 	private IFoodService foodService;
-	@RequestMapping(value= "movie/getMovieInfoFromWEB", method=RequestMethod.GET)
-	public String getMovieInfoFromWEB(HttpServletRequest req, HttpServletResponse resp,
+	@RequestMapping(value= "food/getFoodInfoFromWEB", method=RequestMethod.GET)
+	public String getFoodInfoFromWEB(HttpServletRequest req, HttpServletResponse resp,
 			ModelMap model) throws Exception {
-		log.info(this.getClass().getName() + ".getMovieInfoFromWEB start!");
-		int res = foodService.getMovieInfoFromWEB();
+		log.info(this.getClass().getName() + ".getFoodInfoFromWEB start!");
+		int res = foodService.getFoodInfoFromWEB();
 		model.addAttribute("res", String.valueOf(res));
-		log.info(this.getClass().getName() + ".getMovieInfoFromWEB end");
-		return "/movie/RankForWEB";
+		log.info(this.getClass().getName() + ".getFoodInfoFromWEB end");
+		return "/food/foodForWEB";
 	}
 }

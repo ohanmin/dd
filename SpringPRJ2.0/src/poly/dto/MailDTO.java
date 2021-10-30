@@ -3,6 +3,7 @@ package poly.dto;
 public class MailDTO {
 	private String toMail, title, contents;
 
+
 	public String getToMail() {
 		return toMail;
 	}

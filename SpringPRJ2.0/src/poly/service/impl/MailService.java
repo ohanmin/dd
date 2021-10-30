@@ -22,7 +22,7 @@ public class MailService implements IMailService {
 	private Logger log = Logger.getLogger(this.getClass());
 	final String host = "smtp.naver.com";
 	final String user = "ohhanmin@naver.com";
-	final String password = "*Pimenova27#";
+	final String password = "*cristina27#";
 	@Override
 	public int doSendMail(MailDTO pDTO) {
 		// 로그 찍기(추후 찍은 로그를 통해 이 함수에 접근했는지 파악하기 용이하다.)
@@ -35,6 +35,9 @@ public class MailService implements IMailService {
 			pDTO = new MailDTO();
 		}
 		String toMail = CmmUtil.nvl(pDTO.getToMail()); //받는사람
+		System.out.println("toMail : "+toMail);
+		System.out.println("contents : " +pDTO.getTitle());
+		System.out.println("contents : " +pDTO.getContents());
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host); // javax 외부 라이브러리에 메일 보내는 사람의 정보 설정
 		props.put("mail.smtp.auth", "true"); // javax 외부 라이브러리에 메일 보내는 사람 인증 여부 설정
@@ -51,6 +54,7 @@ public class MailService implements IMailService {
 			message.setSubject(CmmUtil.nvl(pDTO.getTitle()));
 			message.setText(CmmUtil.nvl(pDTO.getContents()));
 			Transport.send(message);
+			log.info("toMail : " +toMail);
 		} catch(MessagingException e) {//메일 전송 관련 에러 잡기
 			res = 0;
 			log.info("[ERROR] " + this.getClass().getName()+".doSendMail : " +e);
