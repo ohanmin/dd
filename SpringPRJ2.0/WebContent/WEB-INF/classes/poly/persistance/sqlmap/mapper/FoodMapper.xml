@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="poly.persistance.mapper.IFoodMapper">
+	<insert id="InsertFoodInfo" parameterType="FoodDTO">
+		insert into food_info
+			(
+				collect_time,
+				seq,
+				day,
+				food_nm,
+				reg_id,
+				chg_id
+			)
+		values(
+			#{collect_time},
+			(select nvl(max(a.seq),0)+1 from food_info a),
+			#{day},
+			#{food_nm},
+			#{reg_id},
+			#{reg_id}			
+		)
+	</insert>
+</mapper>
